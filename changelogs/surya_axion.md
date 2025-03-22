@@ -1,5 +1,5 @@
 # Changelogs for AxionAOSP
-### v1.2 | 21-03-2025
+### v1.2 (BETA) | 21-03-2025
 - Adjust statusbar padding again
 - Disable casefolding for emulated storage without SdcardFS
 - Implements AxionAOSP Tunings
