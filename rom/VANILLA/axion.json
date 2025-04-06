@@ -7,7 +7,12 @@
             "romtype": "OFFICIAL",
             "size": 1822677332,
             "url": "https://sourceforge.net/projects/arata-labs/files/AxionAOSP/VANILLA/axion-1.2-BETA-20250322-OFFICIAL-VANILLA-surya.zip/download",
-            "version": "1.2"
+            "version": "1.2",
+            "changelogs": "https://github.com/HinohArata/OTA/blob/main/changelogs/surya_axion.md",
+            "donate": "https://t.me/HinohArata",
+            "supports": "https://t.me/ArataXDummy",
+            "general": "https://t.me/ArataStuffs",
+            "guide": "https://github.com/HinohArata/OTA/blob/main/flashing_guides.md"
         }
     ]
 }

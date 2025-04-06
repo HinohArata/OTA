@@ -7,7 +7,12 @@
             "romtype": "OFFICIAL",
             "size": 2661492422,
             "url": "https://sourceforge.net/projects/orionos/files/A15/surya/OrionOS-15.1-Hydroxide-surya-Official-Gapps-20250301.zip/download",
-            "version": "15.1"
+            "version": "15.1",
+            "changelogs": "https://orionos.tech/device/surya",
+            "donate": "https://t.me/HinohArata",
+            "supports": "https://t.me/ArataXDummy",
+            "general": "https://t.me/ArataStuffs",
+            "guide": "https://github.com/HinohArata/OTA/blob/main/flashing_guides.md"
         }
     ]
 }
