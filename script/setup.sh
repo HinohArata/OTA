@@ -16,6 +16,7 @@ CMODE_PATH="$TERM_DIR/files/usr/bin/cmode"
 PVP="$TERM_DIR/files/usr/bin/pv"
 
 if ! [ -f $PVP ]; then
+    apt -qq update && apt -qq -y upgrade
     apt install -y pv > /dev/null 2>&1
 fi
 
