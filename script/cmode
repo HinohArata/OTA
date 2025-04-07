@@ -11,7 +11,7 @@ def="\033[0m"
 
 # setup dir
 CHARGE_NODE="/sys/class/power_supply/battery/input_suspend"
-NODE_VAL_NOW="$(sudo cat $CHARGE_NODE)"
+NODE_VAL_NOW="$(su -c "cat $CHARGE_NODE")"
 
 typing() {
     echo -e "$1" | pv -qL 25
@@ -28,17 +28,17 @@ if [ $userlang == 1 ]; then
     typing "[2] Normal\n"
     read -p "Choose which mode what do you want to use: " userdata
     if [ $userdata == 1 ]; then
-        if sudo [ $NODE_VAL_NOW == 0 ]; then
+        if [ $NODE_VAL_NOW == 0 ]; then
             typing "[i] Setting up charge mode to ${yellow}bypass${def}"
             sleep 1
-            if sudo [ -f $CHARGE_NODE ]; then
+            if su -c "[ -f $CHARGE_NODE ]"; then
                 typing "[i] $CHARGE_NODE ${green}available, continuing progress...${def}"
                 sleep 1
-                if sudo [ -w $CHARGE_NODE ]; then
+                if su -c "[ -w $CHARGE_NODE ]"; then
                     sleep 1
-                    echo 1 | sudo tee $CHARGE_NODE > /dev/null
-                    NODE_VAL="$(sudo cat $CHARGE_NODE)"
-                    if [ $NODE_VAL == 1 ]; then
+                    su -c "sh -c 'echo 1 | tee $CHARGE_NODE > /dev/null'"
+                    NODE_VAL="$(su -c "cat $CHARGE_NODE")"
+                    if su -c "[ $NODE_VAL == 1 ]"; then
                         typing "[i] ${green}Succesfully change charge mode to ${yellow}bypass${def}"
                         sleep 1
                     else
@@ -57,17 +57,17 @@ if [ $userlang == 1 ]; then
             typing "[i] ${yellow}Charge mode already on ${green}bypass mode, no need to setup...${def}"
         fi
     elif [ $userdata == 2 ]; then
-        if sudo [ $NODE_VAL_NOW == 1 ]; then
+        if [ $NODE_VAL_NOW == 1 ]; then
             typing "[i] Setting up charge mode to ${yellow}normal${def}"
             sleep 1
-            if sudo [ -f $CHARGE_NODE ]; then
+            if su -c "[ -f $CHARGE_NODE ]"; then
                 typing "[i] $CHARGE_NODE ${green}available, continuing progress...${def}"
                 sleep 1
-                if sudo [ -w $CHARGE_NODE ]; then
+                if su -c "[ -w $CHARGE_NODE ]"; then
                     sleep 1
-                    echo 0 | sudo tee $CHARGE_NODE > /dev/null
-                    NODE_VAL="$(sudo cat $CHARGE_NODE)"
-                    if [ $NODE_VAL == 0 ]; then
+                    su -c "sh -c 'echo 0 | tee $CHARGE_NODE > /dev/null'"
+                    NODE_VAL="$(su -c "cat $CHARGE_NODE")"
+                    if su -c "[ $NODE_VAL == 0 ]"; then
                         typing "[i] ${green}Succesfully set charge mode to ${yellow}normal${def}"
                         sleep 1
                     else
@@ -94,17 +94,17 @@ elif [ $userlang == 2 ]; then
     typing "[2] Normal\n"
     read -p "Pilih mode pengecasan yang ingin kamu pilih: " userdata
     if [ $userdata == 1 ]; then
-        if sudo [ $NODE_VAL_NOW == 0 ]; then
+        if su -c "[ $NODE_VAL_NOW == 0 ]"; then
             typing "[i] Mengatur mode pengecasan menjadi ${yellow}bypass${def}"
             sleep 1
-            if sudo [ -f $CHARGE_NODE ]; then
+            if su -c "[ -f $CHARGE_NODE ]"; then
                 typing "[i] $CHARGE_NODE ${green}tersedia, melanjutkan progress...${def}"
                 sleep 1
-                if sudo [ -w $CHARGE_NODE ]; then
+                if su -c "[ -w $CHARGE_NODE ]"; then
                     sleep 1
-                    echo 1 | sudo tee $CHARGE_NODE > /dev/null
-                    NODE_VAL="$(sudo cat $CHARGE_NODE)"
-                    if [ $NODE_VAL == 1 ]; then
+                    su -c "sh -c 'echo 1 | tee $CHARGE_NODE > /dev/null'"
+                    NODE_VAL="$(su -c "cat $CHARGE_NODE")"
+                    if su -c "[ $NODE_VAL == 1 ]"; then
                         typing "[i] ${green}Sukses mengubah mode cas menjadi ${yellow}bypass${def}"
                         sleep 1
                     else
@@ -123,17 +123,17 @@ elif [ $userlang == 2 ]; then
             typing "[i] ${yellow}Mode pengecasan sudah ${green}bypass, tidak perlu menyetel lagi...${def}"
         fi
     elif [ $userdata == 2 ]; then
-        if sudo [ $NODE_VAL_NOW == 1 ]; then
+        if su -c "[ $NODE_VAL_NOW == 1 ]"; then
             typing "[i] Mengatur mode pengecasan menjadi ${yellow}normal${def}"
             sleep 1
-            if sudo [ -f $CHARGE_NODE ]; then
+            if su -c "[ -f $CHARGE_NODE ]"; then
                 typing "[i] $CHARGE_NODE ${green}tersedia, melanjutkan progress...${def}"
                 sleep 1
-                if sudo [ -w $CHARGE_NODE ]; then
+                if su -c "[ -w $CHARGE_NODE ]"; then
                     sleep 1
-                    echo 0 | sudo tee $CHARGE_NODE > /dev/null
-                    NODE_VAL="$(sudo cat $CHARGE_NODE)"
-                    if [ $NODE_VAL == 0 ]; then
+                    su -c "sh -c 'echo 0 | tee $CHARGE_NODE > /dev/null'"
+                    NODE_VAL="$(su -c "cat $CHARGE_NODE")"
+                    if su -c "[ $NODE_VAL == 0 ]"; then
                         typing "[i] ${green}Sukses mengubah mode cas menjadi ${yellow}normal${def}"
                         sleep 1
                     else

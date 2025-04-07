@@ -14,6 +14,7 @@ TERM_DIR="/data/data/com.termux"
 tsu="$TERM_DIR/files/usr/bin/sudo"
 CMODE_PATH="$TERM_DIR/files/usr/bin/cmode"
 PVP="$TERM_DIR/files/usr/bin/pv"
+WG="$TERM_DIR/files/usr/bin/wget"
 
 if ! [ -f $PVP ]; then
     apt -qq update && apt -qq -y upgrade
@@ -25,13 +26,16 @@ typing() {
 }
 
 function setting_up() {
-    sudo wget -q -O $CMODE_PATH https://raw.githubusercontent.com/HinohArata/OTA/main/script/cmode
+    if ! [ $WG ]; then
+       apt install -y wget > /dev/null 2>&1
+    fi
+    su -c "$WG -q -O $CMODE_PATH https://raw.githubusercontent.com/HinohArata/OTA/main/script/cmode"
     if [ -f $CMODE_PATH ]; then
         typing "[+] ${green}Succesfully install depencies${def}"
         sleep 1
         typing "[i] ${yellow}Setup permissions...${def}"
         sleep 2
-        sudo chmod +x $CMODE_PATH
+        su -c chmod +x $CMODE_PATH
         if [ -x $CMODE_PATH ]; then
             typing "[+] ${green}Permissions setup sucessfully${def}"
             sleep 2
