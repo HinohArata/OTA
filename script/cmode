@@ -1,0 +1,159 @@
+#!/bin/bash
+
+# Color setup
+cyan="\033[96m"
+green="\033[92m"
+red="\033[91m"
+orange="\e[1;35m"
+blue="\033[94m"
+yellow="\033[93m"
+def="\033[0m"
+
+# setup dir
+CHARGE_NODE="/sys/class/power_supply/battery/input_suspend"
+NODE_VAL_NOW="$(sudo cat $CHARGE_NODE)"
+
+typing() {
+    echo -e "$1" | pv -qL 25
+}
+
+typing "Which language do you want to use: "
+typing "[1] English"
+typing "[2] ID\n"
+read -p "Please enter your number: " userlang
+
+if [ $userlang == 1 ]; then
+    typing "Charge mode: "
+    typing "[1] Bypass"
+    typing "[2] Normal\n"
+    read -p "Choose which mode what do you want to use: " userdata
+    if [ $userdata == 1 ]; then
+        if sudo [ $NODE_VAL_NOW == 0 ]; then
+            typing "[i] Setting up charge mode to ${yellow}bypass${def}"
+            sleep 1
+            if sudo [ -f $CHARGE_NODE ]; then
+                typing "[i] $CHARGE_NODE ${green}available, continuing progress...${def}"
+                sleep 1
+                if sudo [ -w $CHARGE_NODE ]; then
+                    sleep 1
+                    echo 1 | sudo tee $CHARGE_NODE > /dev/null
+                    NODE_VAL="$(sudo cat $CHARGE_NODE)"
+                    if [ $NODE_VAL == 1 ]; then
+                        typing "[i] ${green}Succesfully change charge mode to ${yellow}bypass${def}"
+                        sleep 1
+                    else
+                        typing "[!] ${red}Failed to changing charge mode to ${yellow}bypass${def}"
+                        sleep 1
+                    fi
+                else
+                    typing "[i] ${red}Switching charge mode failed, ${yellow}$CHARGE_NODE is RO file...${def}"
+                    sleep 1
+                fi
+            else
+                typing "[!] ${yellow}$CHARGE_NODE not available, aborting...${def}"
+                sleep 1
+            fi
+        else
+            typing "[i] ${yellow}Charge mode already on ${green}bypass mode, no need to setup...${def}"
+        fi
+    elif [ $userdata == 2 ]; then
+        if sudo [ $NODE_VAL_NOW == 1 ]; then
+            typing "[i] Setting up charge mode to ${yellow}normal${def}"
+            sleep 1
+            if sudo [ -f $CHARGE_NODE ]; then
+                typing "[i] $CHARGE_NODE ${green}available, continuing progress...${def}"
+                sleep 1
+                if sudo [ -w $CHARGE_NODE ]; then
+                    sleep 1
+                    echo 0 | sudo tee $CHARGE_NODE > /dev/null
+                    NODE_VAL="$(sudo cat $CHARGE_NODE)"
+                    if [ $NODE_VAL == 0 ]; then
+                        typing "[i] ${green}Succesfully set charge mode to ${yellow}normal${def}"
+                        sleep 1
+                    else
+                        typing "[!] ${red}Failed set charge mode to ${yellow}normal${def}"
+                        sleep 1
+                    fi
+                else
+                    typing "[i] ${red}Switching charge mode failed, ${yellow}$CHARGE_NODE is RO file...${def}"
+                    sleep 1
+                fi
+            else
+                typing "[!] ${yellow}$CHARGE_NODE not available, aborting...${def}"
+                sleep 1
+            fi
+        else
+            typing "[i] ${yellow}Charge mode already on ${green}normal, no need to setup...${def}"
+        fi
+    else
+        typing "[!] ${red}Input is invalid, please enter the correct number${def}"
+    fi
+elif [ $userlang == 2 ]; then
+    typing "Mode cas: "
+    typing "[1] Bypass"
+    typing "[2] Normal\n"
+    read -p "Pilih mode pengecasan yang ingin kamu pilih: " userdata
+    if [ $userdata == 1 ]; then
+        if sudo [ $NODE_VAL_NOW == 0 ]; then
+            typing "[i] Mengatur mode pengecasan menjadi ${yellow}bypass${def}"
+            sleep 1
+            if sudo [ -f $CHARGE_NODE ]; then
+                typing "[i] $CHARGE_NODE ${green}tersedia, melanjutkan progress...${def}"
+                sleep 1
+                if sudo [ -w $CHARGE_NODE ]; then
+                    sleep 1
+                    echo 1 | sudo tee $CHARGE_NODE > /dev/null
+                    NODE_VAL="$(sudo cat $CHARGE_NODE)"
+                    if [ $NODE_VAL == 1 ]; then
+                        typing "[i] ${green}Sukses mengubah mode cas menjadi ${yellow}bypass${def}"
+                        sleep 1
+                    else
+                        typing "[!] ${red}Gagal mengubah mode cas menjadi ${yellow}bypass${def}"
+                        sleep 1
+                    fi
+                else
+                    typing "[i] ${red}Pengubahan mode gagal, ${yellow}$CHARGE_NODE tidak bisa di edit, RO file...${def}"
+                    sleep 1
+                fi
+            else
+                typing "[!] ${yellow}$CHARGE_NODE tidak tersedia, membatalkan...${def}"
+                sleep 1
+            fi
+        else
+            typing "[i] ${yellow}Mode pengecasan sudah ${green}bypass, tidak perlu menyetel lagi...${def}"
+        fi
+    elif [ $userdata == 2 ]; then
+        if sudo [ $NODE_VAL_NOW == 1 ]; then
+            typing "[i] Mengatur mode pengecasan menjadi ${yellow}normal${def}"
+            sleep 1
+            if sudo [ -f $CHARGE_NODE ]; then
+                typing "[i] $CHARGE_NODE ${green}tersedia, melanjutkan progress...${def}"
+                sleep 1
+                if sudo [ -w $CHARGE_NODE ]; then
+                    sleep 1
+                    echo 0 | sudo tee $CHARGE_NODE > /dev/null
+                    NODE_VAL="$(sudo cat $CHARGE_NODE)"
+                    if [ $NODE_VAL == 0 ]; then
+                        typing "[i] ${green}Sukses mengubah mode cas menjadi ${yellow}normal${def}"
+                        sleep 1
+                    else
+                        typing "[!] ${red}Gagal mengubah mode cas menjadi ${yellow}normal${def}"
+                        sleep 1
+                    fi
+                else
+                    typing "[i] ${red}Pengubahan mode gagal, ${yellow}$CHARGE_NODE tidak bisa di edit, RO file...${def}"
+                    sleep 1
+                fi
+            else
+                typing "[!] ${yellow}$CHARGE_NODE tidak tersedia, membatalkan...${def}"
+                sleep 1
+            fi
+        else
+            typing "[i] ${yellow}Mode pengecasan sudah ${green}normal, tidak perlu menyetel lagi...${def}"
+        fi
+    else
+        typing "[!] ${red}Input tidak valid, mohon masukkan angka yang benar${def}"
+    fi
+else
+    typing "[!] ${red}Input is invalid, please choose the correct number !${def}"
+fi
