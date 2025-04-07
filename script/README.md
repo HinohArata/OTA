@@ -8,8 +8,18 @@
 
 ## Steps to use
 
+#### Termux (Simple and fast)
+
 1) Copy this command `apt update && apt upgrade -y`
 2) Copy this following command `bash <(curl -sS https://raw.githubusercontent.com/HinohArata/OTA/main/script/setup.sh)`
 3) If installing dependencies success, you can use `cmode` commands in termux for switching battery charge mode
+
+#### MT Manager
+
+1) Open MT Manager, you can download [Here](https://t.me/mtmanager)
+2) Grant root acces
+3) Re-open MT Manager
+4) Open `/sys/class/power_supply/battery/input_suspend` as Text Editor
+5) Edit value of this file. 0 = Normal mode, 1 = for Bypass charge mode
 
 # 🚀 Good luck :)
