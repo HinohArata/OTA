@@ -26,7 +26,7 @@ typing() {
 }
 
 function setting_up() {
-    if ! [ $WG ]; then
+    if ! [ -f $WG ]; then
        apt install -y wget > /dev/null 2>&1
     fi
     su -c "$WG -q -O $CMODE_PATH https://raw.githubusercontent.com/HinohArata/OTA/main/script/cmode"
