@@ -1,4 +1,11 @@
 # Changelogs for AxionAOSP
+
+### v1.3 (BETA) | 13-04-2025
+- Add bypass charging support (can enable via GameSpace or [Rv-KernelManager](https://t.me/ArataXDummy/34602))
+- Synced with latest source
+- Updated kernel to Anonymous:[Daemon]
+- Updated KSU-Next to latest version
+
 ### v1.2 (BETA) | 21-03-2025
 - Adjust statusbar padding again
 - Disable casefolding for emulated storage without SdcardFS
