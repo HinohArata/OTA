@@ -1,9 +1,13 @@
 # Changelogs for AxionAOSP
 
+### v1.3 (NIGHTLY) | 18-04-2025
+- Synced with latest source
+- More kernel improvements
+- Updated to latest KernelSU-Next and SuSFS
+
 ### v1.3 (BETA) | 13-04-2025
 - Add bypass charging support (can enable via GameSpace or [Rv-KernelManager](https://t.me/ArataXDummy/34602))
 - Synced with latest source
-- Updated kernel to Anonymous:[Daemon]
 - Updated KSU-Next to latest version
 
 ### v1.2 (BETA) | 21-03-2025
