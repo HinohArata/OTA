@@ -1,5 +1,8 @@
 # Changelogs for AxionAOSP
 
+### v1.3 (NIGHTLY) HOTFiX | 21-04-2025
+- Ship GalleryGO for gallery app
+
 ### v1.3 (NIGHTLY) | 18-04-2025
 - Synced with latest source
 - More kernel improvements
