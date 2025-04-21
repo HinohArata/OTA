@@ -1,6 +1,12 @@
 # Changelogs for Project Infinity X
 
-### v.2.5/7 | 13-04-2025
+### v2.7 | 21-04-2025
+- Ship GalleryGO as default Gallery app
+- More kernel improvements
+- Change signing keys (Maybe should clean flash)
+- Synced with latest source
+
+### v2.7 | 13-04-2025
 - Synced with latest source
 - Updated kernel to Anonymous:[Daemon]
 - Updated KSU-Next to latest version and support SuSFS
